@@ -1,6 +1,6 @@
-# TensoIR: Tensorial Inverse Rendering 
+# TensoIR: Tensorial Inverse Rendering (CVPR 2023)
 ## [Project page](https://haian-jin.github.io/TensoIR/) |  [Paper](https://arxiv.org/abs/2304.12461)
-This repository contains a pytorch implementation for the paper: [TensoRF: Tensorial Inverse Rendering](https://arxiv.org/abs/2304.12461). The code can run well, but it is not well organized. I may reorganize the code in the future.
+This repository contains a pytorch implementation for the paper: [TensoRF: Tensorial Inverse Rendering](https://arxiv.org/abs/2304.12461). The code can run well, but it is not well organized. I may re-organize the code when I am available.
 
 #### Tested on Ubuntu 20.04 + Pytorch 1.10.1 
 
@@ -32,35 +32,35 @@ The file folder has environment maps of different resoluitions($2048 \times 1024
 
 ## Training
 
-#### Note:
+### Note:
 
 1. After finishing all training iterations, the training script will automatically render the all test images under the learned lighting condition and save them in the log folder. It will also compute all metrics related to geometry, materials, and novel view synthesis(except for relighting). The results will be saved in the log folder as well.
 
 2. Different scenes have different config files. The main difference of those config files is the different weight value for  `normals_diff_weight`, which controls the how close the predicted normals should be to the derived normals. Larger weight will help preventing the normals prediction from overfiting the surpervised colors, but at the same time it will demage the normals prediction network's ability to predict high-frequency details. **We recommend three values to try: `0.0005`, `0.002`, and `0.005` when you train TensoIR on your own dataset.**
 
-#### For pretrained checkpoints and results please see:
+### For pretrained checkpoints and results please see:
 
 [Will be uploaded soon]()
 
-#### Training under single lighting condition
+### Training under single lighting condition
 
 ```bash
 export PYTHONPATH=. && python train_tensoIR.py --config ./configs/single_light/armadillo.txt
 ```
 
-#### Training under rotated multi-lighting conditions
+### Training under rotated multi-lighting conditions
 
 ```bash
 export PYTHONPATH=. && python train_tensoIR_rotated_multi_lights.py  --config ./configs/multi_light_rotated/hotdog.txt
 ```
 
 
-#### Training under general multi-lighting conditions
+### Training under general multi-lighting conditions
 
 ```bash
 export PYTHONPATH=. && python train_tensoIR_general_multi_lights.py  --config ./configs/multi_light_general/ficus.txt
 ```
-#### (Optional) Training for the original NeRF-Synthetic dataset
+### (Optional) Training for the original NeRF-Synthetic dataset
 
 We don't do quantitative and qualitative comparisons for the original NeRF-Synthetic dataset in our paper (the reasons have been discussed above), but you can still train TensoIR on the original NeRF-Synthetic dataset for some analysis. 
 
@@ -71,7 +71,7 @@ export PYTHONPATH=. && python train_tensoIR_simple.py --config ./configs/single_
 
 ## Testing and Validation
 
-#### Rendering with a pre-trained model under learned lighting condition
+### Rendering with a pre-trained model under learned lighting condition
 
 ```bash
 export PYTHONPATH=. && python "$training_file" --config "$config_path" --ckpt "$ckpt_path" --render_only 1 --render_test 1
@@ -85,7 +85,7 @@ export PYTHONPATH=. && python "$training_file" --config "$config_path" --ckpt "$
 
 The result will be stored in `--basedir` defined in the config file.
 
-#### Relighting with a pre-trained model under unseen lighting conditions
+### Relighting with a pre-trained model under unseen lighting conditions
 
 
 ```bash
@@ -102,7 +102,7 @@ Reduce the `--batch_size` if you have limited GPU memory.
 
 The line 370 of `scripts/relight_importance.py` specifies the names of environment maps for relighting. You can change it if you want to test other unseen lighting conditions.
 
-#### Extracting mesh
+### Extracting mesh
 The mesh will be stored in the same folder as the checkpoint.
 
 ```bash
