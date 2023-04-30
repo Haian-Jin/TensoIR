@@ -25,13 +25,13 @@ pip install tqdm scikit-image opencv-python configargparse lpips imageio-ffmpeg 
 
 **Please download the dataset and environment maps from the following links and put them in the `./data` folder:**
 
-* [TensoIR-Synthetic](https://zjutvstaff-my.sharepoint.com/personal/1906217881_zjubtv_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2F1906217881%5Fzjubtv%5Fcom%2FDocuments%2FZJU%5Flearning%2FResearch%2FTensoIR%2FDataset%2FTensoIR%5FSynthetic&ga=1)
+* [TensoIR-Synthetic](https://zenodo.org/record/7880113#.ZE68FHZBz18)
   We provide a TensoIR-Synthetic dataset for training and testing. The dataset is rendered by Blender and consists of four complex synthetic scenes (ficus, lego, armadillo, and hotdog). We use the same camera settings as NeRFactor, so we have 100 training views and 200 test views.
   For each view, we provide the normals map, albedo map and multiple RGB images (11 images) under different lighting conditions.
   **More details about the dataset and our multi-light settings can be found in the supplementary material of our paper.**
 * [NeRF-Synthetic](https://drive.google.com/drive/folders/128yBriW1IG_3NJ5Rp7APSTZsJqdJdfc1)
   Original NeRF-Synthetic dataset is not widely used for inverse rendering work, as some scenes of it are not entirely rendered with the environment map and some objects' materials cannot be well handled by the simplfied BRDF model(as discussed in the "limitations" section of our paper's supplementary material). But we still provide the original NeRF-Synthetic dataset to facilitate the analysis of our work.
-* [Environment Maps](https://zjutvstaff-my.sharepoint.com/:f:/g/personal/1906217881_zjubtv_com/EmYdVkI-avBDiEcpOmV-N1ABZi9N66yKhj6bPtg4aimU7g?e=4Te39g)
+* [Environment Maps](https://drive.google.com/file/d/10WLc4zk2idf4xGb6nPL43OXTTHvAXSR3/view?usp=share_link)
   The file folder has environment maps of different resoluitions($2048 \times 1024$ and $1024 \times 512$). We use the relatively lower resolution environment maps for relighting-testing because of the limited GPU memory, though the G.T. data is rendered by high-resolution environment maps. You can also use the higher resolution environment map for relighting-testing if you have enough GPU memory.
 
 ### Generating your own synthetic dataset
