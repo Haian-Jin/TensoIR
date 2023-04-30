@@ -2,7 +2,7 @@
 
 ## [Project Page](https://haian-jin.github.io/TensoIR/) |  [Paper](https://arxiv.org/abs/2304.12461)
 
-This repository contains a pytorch implementation for the paper: [TensoRF: Tensorial Inverse Rendering](https://arxiv.org/abs/2304.12461).
+This repository contains a pytorch implementation for the paper: [TensoIR: Tensorial Inverse Rendering](https://arxiv.org/abs/2304.12461).
 
 **The code can run well, but it is not well organized. I may re-organize the code when I am available.**
 
