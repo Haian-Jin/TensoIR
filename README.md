@@ -36,7 +36,7 @@ pip install tqdm scikit-image opencv-python configargparse lpips imageio-ffmpeg 
 
 ### Generating your own synthetic dataset
 
-We provide the code for generating your own synthetic dataset with your own blender files and Blender software. Please download this [file](https://drive.google.com/file/d/1PNrARJVjamVu_WHC_5gKI91zcqAodTYO/view?usp=sharing) and follow the readme.md file inside it to render your own dataset. The Blender rendering scripts heavily rely on the code provided by [NeRFactor](https://github.com/google/nerfactor). Thanks for its great work!
+We provide the code for generating your own synthetic dataset with your own blender files and Blender software. Please download this [file](https://drive.google.com/file/d/1mnh81gvxSzCl_2-S2jAnXxsyZSpz0Kga/view?usp=sharing) and follow the readme.md file inside it to render your own dataset. The Blender rendering scripts heavily rely on the code provided by [NeRFactor](https://github.com/google/nerfactor). Thanks for its great work!
 
 
 
@@ -50,7 +50,7 @@ We provide the code for generating your own synthetic dataset with your own blen
 
 ### For pretrained checkpoints and results please see:
 
-[Will be uploaded soon]()
+[Checkpoints](https://drive.google.com/file/d/1kGCuXo64n_35jjWTG9fHQEhvHQx8ABch/view?usp=sharings)
 
 
 ### Training under single lighting condition

@@ -34,10 +34,9 @@ def compute_rescale_ratio(tensoIR, dataset, sampled_num=20):
         albedo_map = list()
         chunk_idxs = torch.split(torch.arange(frame_rays.shape[0]), 3000) 
         for chunk_idx in chunk_idxs:
-            with torch.enable_grad():
-                rgb_chunk, depth_chunk, normal_chunk, albedo_chunk, roughness_chunk, \
-                    fresnel_chunk, acc_chunk, *temp \
-                    = tensoIR(frame_rays[chunk_idx], light_idx[chunk_idx], is_train=False, white_bg=True, ndc_ray=False, N_samples=-1)
+            rgb_chunk, depth_chunk, normal_chunk, albedo_chunk, roughness_chunk, \
+                fresnel_chunk, acc_chunk, *temp \
+                = tensoIR(frame_rays[chunk_idx], light_idx[chunk_idx], is_train=False, white_bg=True, ndc_ray=False, N_samples=-1)
             albedo_map.append(albedo_chunk.detach())
         albedo_map = torch.cat(albedo_map, dim=0).reshape(H, W, 3)
         gt_albedo = gt_albedo.reshape(H, W, 3)
