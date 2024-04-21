@@ -51,6 +51,7 @@ We provide the code for generating your own synthetic dataset with your own blen
 ### For pretrained checkpoints and results please see:
 
 [Checkpoints](https://drive.google.com/file/d/1kGCuXo64n_35jjWTG9fHQEhvHQx8ABch/view?usp=sharings)
+[Results](https://drive.google.com/drive/folders/1bRCiXIs-0wcNm3MNIYihpVKQoPxFPzI8?usp=drive_link)
 
 
 ### Training under single lighting condition
