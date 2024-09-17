@@ -26,17 +26,17 @@ pip install tqdm scikit-image opencv-python configargparse lpips imageio-ffmpeg 
 **Please download the dataset and environment maps from the following links and put them in the `./data` folder:**
 
 * [TensoIR-Synthetic](https://zenodo.org/record/7880113#.ZE68FHZBz18)
-  We provide a TensoIR-Synthetic dataset for training and testing. The dataset is rendered by Blender and consists of four complex synthetic scenes (ficus, lego, armadillo, and hotdog). We use the same camera settings as NeRFactor, so we have 100 training views and 200 test views.
-  For each view, we provide the normals map, albedo map and multiple RGB images (11 images) under different lighting conditions.
+  We provide a TensoIR-Synthetic dataset for training and testing. The dataset is rendered by Blender and consists of four complex synthetic scenes (ficus, lego, armadillo, and hotdog). We use the same camera settings as NeRFactor, so we have 100 training views and 200 test views. For each view, we provide the normals map, albedo map, and multiple RGB images (11 images) under different lighting conditions. The testing lighting for quantitative comparison includes: 'bridge', 'city', 'fireplace', 'forest', and 'night'. Please use the [link](https://drive.google.com/file/d/10WLc4zk2idf4xGb6nPL43OXTTHvAXSR3/view?usp=share_link) to download the GT relighting environment maps.
+
   **More details about the dataset and our multi-light settings can be found in the supplementary material of our paper.**
 * [NeRF-Synthetic](https://drive.google.com/drive/folders/128yBriW1IG_3NJ5Rp7APSTZsJqdJdfc1)
-  Original NeRF-Synthetic dataset is not widely used for inverse rendering work, as some scenes of it are not entirely rendered with the environment map and some objects' materials cannot be well handled by the simplfied BRDF model(as discussed in the "limitations" section of our paper's supplementary material). But we still provide the original NeRF-Synthetic dataset to facilitate the analysis of our work.
+  Original NeRF-Synthetic dataset is not widely used for inverse rendering work, as some scenes of it are not entirely rendered with the environment map and some objects' materials cannot be well handled by the simplfied BRDF model(as discussed in the "limitations" section of our paper's supplementary material). However, we still provide the original NeRF-Synthetic dataset to facilitate the analysis of our work.
 * [Environment Maps](https://drive.google.com/file/d/10WLc4zk2idf4xGb6nPL43OXTTHvAXSR3/view?usp=share_link)
-  The file folder has environment maps of different resoluitions($2048 \times 1024$ and $1024 \times 512$). We use the relatively lower resolution environment maps for relighting-testing because of the limited GPU memory, though the G.T. data is rendered by high-resolution environment maps. You can also use the higher resolution environment map for relighting-testing if you have enough GPU memory.
+  The file folder has environment maps of different resolutions ($2048 \times 1024$ and $1024 \times 512$). We use the relatively lower resolution environment maps for relighting-testing because of the limited GPU memory, though the G.T. data is rendered by high-resolution environment maps. You can also use the higher-resolution environment map for relighting-testing if you have enough GPU memory.
 
 ### Generating your own synthetic dataset
 
-We provide the code for generating your own synthetic dataset with your own blender files and Blender software. Please download this [file](https://drive.google.com/file/d/1mnh81gvxSzCl_2-S2jAnXxsyZSpz0Kga/view?usp=sharing) and follow the readme.md file inside it to render your own dataset. The Blender rendering scripts heavily rely on the code provided by [NeRFactor](https://github.com/google/nerfactor). Thanks for its great work!
+We provide the code for generating your own synthetic dataset with your own Blender files and Blender software. Please download this [file](https://drive.google.com/file/d/1mnh81gvxSzCl_2-S2jAnXxsyZSpz0Kga/view?usp=sharing) and follow the readme.md file inside it to render your own dataset. The Blender rendering scripts heavily rely on the code provided by [NeRFactor](https://github.com/google/nerfactor). Thanks for its great work!
 
 
 
@@ -44,11 +44,11 @@ We provide the code for generating your own synthetic dataset with your own blen
 
 ### Note:
 
-1. After finishing all training iterations, the training script will automatically render the all test images under the learned lighting condition and save them in the log folder. It will also compute all metrics related to geometry, materials, and novel view synthesis(except for relighting). The results will be saved in the log folder as well.
-2. Different scenes have different config files. The main difference of those config files is the different weight value for  `normals_diff_weight`, which controls the how close the predicted normals should be to the derived normals. Larger weight will help preventing the normals prediction from overfiting the surpervised colors, but at the same time it will demage the normals prediction network's ability to predict high-frequency details. **We recommend three values to try: `0.0005`, `0.002`, and `0.005` when you train TensoIR on your own dataset.**
+1. After finishing all training iterations, the training script will automatically render all test images under the learned lighting condition and save them in the log folder. It will also compute all metrics related to geometry, materials, and novel view synthesis(except for relighting). The results will be saved in the log folder as well.
+2. Different scenes have different config files. The main difference between those config files is the different weight values for  `normals_diff_weight`, which controls how close the predicted normals should be to the derived normals. A larger weight will help prevent the normals prediction from overfitting the supervised colors, but at the same time, it will damage the normals prediction network's ability to predict high-frequency details. **We recommend three values to try: `0.0005`, `0.002`, and `0.005` when you train TensoIR on your own dataset.**
 
 
-### For pretrained checkpoints and results please see:
+### For pre-trained checkpoints and results please see:
 
 [Checkpoints](https://drive.google.com/file/d/1kGCuXo64n_35jjWTG9fHQEhvHQx8ABch/view?usp=sharings)
 [Results](https://drive.google.com/drive/folders/1bRCiXIs-0wcNm3MNIYihpVKQoPxFPzI8?usp=drive_link)
@@ -107,7 +107,7 @@ The result will be stored in `--basedir` defined in the config file.
 export PYTHONPATH=. && python scripts/relight_importance.py --ckpt "$ckpt_path" --config configs/relighting_test/"$scene".txt --batch_size 800
 ```
 
-We do light intensity importance sampling for relighting. The sampling results are stored in `--geo_buffer_path` defined in the config file.
+We do light-intensity importance sampling for relighting. The sampling results are stored in `--geo_buffer_path` defined in the config file.
 
 `"$ckpt_path"` is the path to the checkpoint you want to test.
 
