@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
+
+  <!-- <meta http-equiv="x-ua-compatible" content="ie=edge"> -->
+
+  <title>TensoIR: Tensorial Inverse Rendering</title>
+
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- mirror: F0%9F%AA%9E&lt -->
+
+  <link rel="stylesheet" type="text/css" href="./TensoIR_files/slick.css">
+  <link rel="stylesheet" type="text/css" href="./TensoIR_files/slick-theme.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+  <script defer src="./TensoIR_files/fontawesome.all.min.js"></script>
+  <link rel="stylesheet" href="./TensoIR_files/bulma.min.css">
+  <link rel="stylesheet" href="./TensoIR_files/bulma-slider.min.css">
+  <link rel="stylesheet" href="./TensoIR_files/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./TensoIR_files/bootstrap.min.css">
+  <link rel="stylesheet" href="./TensoIR_files/font-awesome.min.css">
+  <link rel="stylesheet" href="./TensoIR_files/codemirror.min.css">
+  <link rel="stylesheet" href="./TensoIR_files/app.css">
+  <link rel="stylesheet" href="./TensoIR_files/index.css">
+  <link rel="stylesheet" href="./TensoIR_files/select.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="./TensoIR_files/bootstrap.min.js"></script>
+  <script src="./TensoIR_files/codemirror.min.js"></script>
+  <script src="./TensoIR_files/clipboard.min.js"></script>
+  <script src="./TensoIR_files/video_comparison.js"></script>
+  <script src="./TensoIR_files/select.js"></script>
+  <script src="./TensoIR_files/bulma-slider.min.js"></script>
+  <script src="./TensoIR_files/bulma-carousel.min.js"></script>
+  <script src="./TensoIR_files/index.js"></script>
+
+</head>
+
+<body>
+  
+  <div class="container" id="header" style="text-align: center; margin: auto;">
+    <div class="row" id="title-row" style="max-width: 100%; margin: 0 auto;" >
+      <h2 class="col-md-10 col-md-offset-1  text-center" id="title"style="font-size: 3.0em;">
+        <b>TensoIR</b>: Tensorial Inverse Rendering
+      </h2>
+    </div>
+    <div class="row" style="margin-top: -10px;">
+      <h3>
+        CVPR 2023
+        <br>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container" id="main">
+    <div class="row">
+      <!-- make the font bigger -->
+
+      <div class="col-sm-10 col-sm-offset-1 text-center" style="font-size: 1.1em;">
+        <ul class="list-inline" >
+          
+          <li> <a href="https://haian-jin.github.io/">Haian Jin<sup>1* 📧</sup></a> </li>
+          <li> <a href="https://liuisabella.com/">Isabella Liu<sup>2*</sup></a> </li>
+          <li> <a href="https://peijiapxu.github.io/">Peijia Xu<sup>3</sup></a> </li>
+          <li> <a href="https://i.buriedjet.com/">Xiaoshuai Zhang<sup>2</sup></a> </li>
+          <li> <a href="http://hansf.me/">Songfang Han<sup>2</sup></a> </li>
+          <br />
+          <li> <a href="https://sai-bi.github.io/">Sai Bi<sup>4</sup></a> </li>
+          <li> <a href="https://xzhou.me/">Xiaowei Zhou<sup>1</sup></a> </li>
+          <li> <a href="https://zexiangxu.github.io/">Zexiang Xu<sup>4&#8224;</sup></a> </li>
+          <li> <a href="https://cseweb.ucsd.edu/~haosu/">Hao Su<sup>2&#8224;</sup></a> </li>
+        </ul>
+        <ul class="list-inline">
+          <li> <sup>1</sup>Zhejiang University </li>
+          <li> <sup>2</sup>University of California, San Diego </li>
+          <li> <sup>3</sup>Kingstar Technology Inc.</li>
+          <li> <sup>4</sup>Adobe Research </li>
+          <br />
+          <li> 📧 Project Contact. * Equal Contribution. &#8224; Equal advisory.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2 text-center">
+        <span class="link-block">
+          <a href="https://arxiv.org/abs/2304.12461" class="external-link button is-normal is-rounded is-dark">
+            <span class="icon">
+              <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas"
+                data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"
+                data-fa-i2svg="">
+                <path fill="currentColor"
+                  d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z">
+                </path>
+              </svg><!-- <i class="fas fa-file-pdf"></i> Font Awesome fontawesome.com -->
+            </span>
+            <span>Paper</span>
+          </a>
+        </span>
+        <span class="link-block">
+          <a href="https://github.com/Haian-Jin/TensoIR" class="external-link button is-normal is-rounded is-dark">
+            <span class="icon">
+              <svg class="svg-inline--fa fa-github fa-w-16" aria-hidden="true" focusable="false" data-prefix="fab"
+                data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg="">
+                <path fill="currentColor"
+                  d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z">
+                </path>
+              </svg><!-- <i class="fab fa-github"></i> Font Awesome fontawesome.com -->
+            </span>
+            <span>Code</span>
+          </a>
+        </span>
+        <span class="link-block">
+          <a href="https://www.youtube.com/watch?v=WMzTRwmDMgo&t=26s&ab_channel=HaianJin" class="external-link button is-normal is-rounded is-dark">
+            <span class="icon">
+              <svg class="svg-inline--fa fa-youtube fa-w-16" aria-hidden="true" focusable="false" data-prefix="fab"
+                data-icon="youtube" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                data-fa-i2svg="">
+                <path fill="currentColor"
+                  d="M549.7 124.1c-6.4-24.1-25.5-42.2-49.6-48.6C456.2 64 288 64 288 64s-168.2 0-212.1 11.5C25.8 81.9 6.7 100 0 124.1-8.1 164 .9 224 .9 224s0 60.1 11.1 99.9c6.7 24.1 25.8 43.2 49.9 49.6C119.8 448 288 448 288 448s168.2 0 212-11.5c24-6.4 43-25.5 49.4-49.6C576 284 .9 224 .9zM232 307V197l104 55-104 55z">
+                </path>
+              </svg><!-- <i class="fab fa-youtube"></i> Font Awesome fontawesome.com -->
+            </span>
+            <span>Video</span>
+          </a>
+        </span>
+
+      </div>
+    </div>
+
+
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-md-11 col-md-offset-1 ">
+
+        <h3>
+        <b>Abstract</b>
+        </h3>
+        <hr>
+
+        <div class="row">
+          <div align="center">
+          <video width="95%" height="95%" src='TensoIR_files/Result_on_Synthetic_Data/overview.mp4' poster="TensoIR_files/loading.gif" muted="" autoplay="" loop="" playsinline="" >
+          </video> 
+        </div>
+      
+        </div>
+        <!-- bigger text size -->
+        <div class="text-justify" style="font-size: 1.2em;">
+    
+          We propose TensoIR, a novel inverse rendering approach
+          based on tensor factorization and neural fields. Unlike previous works that use purely MLP-based neural
+          fields, thus suffering from low capacity and high computation
+          costs, we extend TensoRF, a state-of-the-art approach
+          for radiance field modeling, to estimate scene geometry,
+          surface reflectance, and environment illumination
+          from multi-view images captured under unknown lighting
+          conditions. Our approach jointly achieves radiance field reconstruction
+          and physically-based model estimation, leading
+          to photo-realistic novel view synthesis and relighting
+          results. Benefiting from the efficiency and extensibility of
+          the TensoRF-based representation, our method can accurately
+          model secondary shading effects (like shadows and
+          indirect lighting) and generally support input images captured
+          under a single or multiple unknown lighting conditions.
+          The low-rank tensor representation allows us to not
+          only achieve fast and compact reconstruction but also better
+          exploit shared information under an arbitrary number of
+          capturing lighting conditions. We demonstrate the superiority
+          of our method to baseline methods qualitatively and
+          quantitatively on various challenging synthetic and realworld
+          scenes.
+        </div>
+        <center>
+          <!-- <img src="./TensoIR_files/images/pipeline.png" class="img-responsive" alt="pipeline" width="90%"
+            style="max-height: 450px;margin:auto;"> -->
+        </center>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-md-11 col-md-offset-1 ">
+        <h3>
+          <b>Results on TensoIR-Synthetic Dataset</b>
+        </h3>
+        <hr>
+        <p>
+          <font size="3" color="gray">
+            * <b>Physically-based rendering</b> denotes rendering using the estimated BRDF and environment illumination
+            <br />
+            * All albedo results are scaled for each channel separately to aligned with ground-truth as is done by <a
+            href="https://xiuming.info/projects/nerfactor/">NeRFactor</a>. 
+            The scaled factor is computed with the formula used in <a href="https://github.com/Kai-46/PhySG">PhySG</a>.
+            <!-- <br />
+            * The G.T. roughness is N/A. because not all synthetic data are rendered with Disney BSDF. -->
+          </font>
+        </p>
+
+        <center>
+
+
+          <h4>
+            Scene
+          </h4>
+          <ul class="nav nav-pills nav-justified" id="synthetic-view-ul" style="width: 60%">
+            <li role="presentation" class="active"><a href="javascript: void(0);" onclick="ChangeScene(0);">Lego</a>
+            </li>
+            <li role="presentation"><a href="javascript: void(0);" onclick="ChangeScene(1);">Ficus</a></li>
+            <li role="presentation"><a href="javascript: void(0);" onclick="ChangeScene(2);">Hotdog</a></li>
+            <li role="presentation"><a href="javascript: void(0);" onclick="ChangeScene(3);">Armadillo</a></li>
+          </ul>
+          <h4>
+            Result
+          </h4>
+          <ul class="nav nav-pills nav-justified" id="result-view-ul" style="width: 60%">
+            <li role="presentation" class="active"><a href="javascript: void(0);"
+                onclick="ChangeResult(0);">Normal</a>
+            </li>
+            <li role="presentation"><a href="javascript: void(0);" onclick="ChangeResult(1);">Albedo</a>
+            </li>
+
+            <li role="presentation"><a href="javascript: void(0);" onclick="ChangeResult(2);">Physically-Based Rendering</a>
+          </ul>
+
+            <div align="center">
+            <video id="TensoIR_Synthetic_Reconstruction" 
+              width="100%" height="100%" 
+              src='TensoIR_files/Result_on_Synthetic_Data/Lego/normal.mp4' 
+              poster="TensoIR_files/loading.gif" 
+              muted="" autoplay="" loop="" playsinline="" >
+            </video> 
+            </div>  
+        </center>
+      </div>
+    </div>
+    
+    <br>
+    <br>
+
+    <div class="row">
+      <div class="col-md-11 col-md-offset-1 " id="relighting_results">
+        <h3>
+          <b>Relighting Under Unseen Lighting Conditions</b>
+        </h3>
+        <hr>
+        <div class="text-justify">
+          Here we have a set of multi-view images captured under <b>a single unknown </b>lighting condition as input.
+          <br>
+          We compare with NeRFactor and InvRender on relighting under unseen lighting conditions. 
+        </div>
+        <center>
+        <h4>
+          Scene
+        </h4>
+        <ul class="nav nav-pills nav-justified" id="relighting" style="width: 60%">
+          <li role="presentation" class="active"><a href="javascript: void(0);" onclick="ChangeRelighting(0);">Lego</a>
+          </li>
+          <li role="presentation"><a href="javascript: void(0);" onclick="ChangeRelighting(1);">Ficus</a></li>
+          <li role="presentation"><a href="javascript: void(0);" onclick="ChangeRelighting(2);">Hotdog</a></li>
+          <li role="presentation"><a href="javascript: void(0);" onclick="ChangeRelighting(3);">Armadillo</a></li>
+        </ul>
+        <br>
+        </center>
+
+        <div align="center">
+        <video id="TensoIR_Synthetic_Relighting" 
+          width="100%" height="100%" 
+          src='TensoIR_files/relighting/Lego.mp4' 
+          poster="TensoIR_files/loading.gif" 
+          muted="" autoplay="" loop="" playsinline="" >
+        </video> 
+        </div>
+
+      </div>
+    </div>
+  <br>
+  <br>
+    <div class="row">
+      <div class="col-md-11 col-md-offset-1" >
+        <h3>
+          <b>Secondary-shading Modelling</b>
+        </h3>
+        <hr>
+        <div id="visibility_results">
+          <h4>
+            <b>(a) Visibility Modelling</b>
+          </h4>
+          <div class="text-justify">
+            We compare with NeRFactor on visibility modeling, showing the lighting visibility under individual directional lights (one light at a time, or OLAT).
+            <br>
+          </div>
+          <center>
+          <h4>
+            Scene
+          </h4>
+          <ul class="nav nav-pills nav-justified" id="visibility" style="width: 60%">
+            <li role="presentation" class="active"><a href="javascript: void(0);" onclick="ChangeVisibility(0);">Lego</a>
+            </li>
+            <li role="presentation"><a href="javascript: void(0);" onclick="ChangeVisibility(1);">Ficus</a></li>
+            <li role="presentation"><a href="javascript: void(0);" onclick="ChangeVisibility(2);">Hotdog</a></li>
+            <li role="presentation"><a href="javascript: void(0);" onclick="ChangeVisibility(3);">Armadillo</a></li>
+          </ul>
+          <br>
+        </center>
+          <table width="100%">
+            <tbody>
+              <video id="TensoIR_Synthetic_Visibility" 
+              width="100%" height="100%" 
+              src='TensoIR_files/visibility/Lego/result.mp4' 
+              poster="TensoIR_files/loading.gif" 
+              muted="" autoplay="" loop="" playsinline="" >
+              </video> 
+            <!-- add title for above picture and videos, they should be in the middle -->
+              <tr>
+                <td align="center" valign="top" width="33%">
+                  <h4>Input View</h4>
+                </td>
+                <td align="center" valign="top" width="33%">
+                  <h4>Our Method</h4>
+                </td>
+                <td align="center" valign="top" width="33%">
+                  <h4>NeRFactor</h4>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+        <br>
+        <div id="indiret_light_results">
+          <h4>
+            <b>(b) Indirect Lighting Modelling</b>
+          </h4>
+          <table width="100%">
+            <tbody>
+              <video 
+              width="100%" height="100%" 
+              src='TensoIR_files/indirect_lighting/result.mp4' 
+              poster="TensoIR_files/loading.gif" 
+              muted="" autoplay="" loop="" playsinline="" >
+              </video> 
+              <tr>
+                <td align="center" valign="top" width="25%">
+                  <h4>Rendered with only indirect light</h4>
+                </td>
+                <td align="center" valign="top" width="25%">
+                  <h4>Rendered with only direct light</h4>
+                </td>
+                <td align="center" valign="top" width="25%">
+                  <h4>Full Rendering</h4>
+                </td>
+                <td align="center" valign="top" width="25%">
+                  <h4>Ground-truth</h4>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <script>
+            const myDiv4 = document.getElementById('indiret_light_results');
+            const videos4 = myDiv4.querySelectorAll('video');
+            const videosCount4 = videos4.length;
+            let loadedVideosCount4 = 0;
+        
+            const onVideoLoadedData4 = () => {
+              loadedVideosCount4++;
+              // console.log(loadedVideosCount);
+              if (loadedVideosCount4 === videosCount4) {
+                videos4.forEach(video => {
+                  video.play();
+                });
+              }
+            };
+        
+            videos4.forEach(video => {
+              video.addEventListener('loadeddata', onVideoLoadedData4);
+            });
+          </script>
+        </div>
+        
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-md-11 col-md-offset-1 ">
+        <h3>
+        <b>Acknowledgements</b>
+        <hr>
+        </h3>
+
+        Some code for this website was borrowed from 
+          <A href="https://nerfies.github.io/">Nerfies</A> and <A
+          href="https://climatenerf.github.io/">ClimateNeRF</A>.
+      </div>
+      <br>
+    </div>
+    <br>
+    <br>
+  </div>
+</body>
+
+</html>
